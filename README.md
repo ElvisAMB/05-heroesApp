@@ -45,3 +45,6 @@ git push -u origin main
 ## Material Angular
 
 https://material.angular.io/components/button/examples
+
+## Instalar Angular Material
+ng add @angular/material

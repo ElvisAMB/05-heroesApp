@@ -50,3 +50,7 @@ git push -u origin main
 `ng g m appRouting --flat`
 ## Generar componente
 Command: `05-heroesApp>ng g c heroes/pages/home --skip-tests -is`
+## Icons
+Page: `https://material.io/resources/icons/?icon=bookmark&style=baseline`
+## Angular Material
+Page: `https://material.angular.io/`

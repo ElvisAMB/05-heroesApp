@@ -48,3 +48,5 @@ git push -u origin main
 `ng add @angular/material`
 ## Creación de rutas del proyecto
 `ng g m appRouting --flat`
+## Generar componente
+Command: `05-heroesApp>ng g c heroes/pages/home --skip-tests -is`

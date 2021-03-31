@@ -54,3 +54,4 @@ Command: `05-heroesApp>ng g c heroes/pages/home --skip-tests -is`
 Page: `https://material.io/resources/icons/?icon=bookmark&style=baseline`
 ## Angular Material
 Page: `https://material.angular.io/`
+      `https://material.io/resources/icons/?style=baseline`

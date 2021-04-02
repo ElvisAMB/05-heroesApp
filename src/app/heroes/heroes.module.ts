@@ -11,6 +11,7 @@ import { ListadoComponent } from './pages/listado/listado.component';
 import { HeroesRoutingModule } from './heroes-routing.module';
 import { HomeComponent } from './pages/home/home.component';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 
 
 @NgModule({
@@ -22,6 +23,8 @@ import { MatButtonModule } from '@angular/material/button';
     HomeComponent],
   imports: [
     CommonModule,
+    MatButtonModule,
+    MatCardModule,
     FlexLayoutModule,
     MaterialModule,
     //MatToolbarModule,

@@ -55,3 +55,10 @@ Page: `https://material.io/resources/icons/?icon=bookmark&style=baseline`
 ## Angular Material
 Page: `https://material.angular.io/`
       `https://material.io/resources/icons/?style=baseline`
+
+## Install Json-Server
+Command `npm install -g json-server`
+Database `https://gist.github.com/Klerith/403c91e61d3c87284beb0dd138619958`, download and save in file with extension `.json`, example: `dbHeroes.json`
+
+## Star Json-Server       
+Command `json-server --watch dbHeroes.json`

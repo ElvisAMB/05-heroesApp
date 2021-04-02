@@ -13,15 +13,19 @@ import { Heroe } from '../../interfaces/heroes.interface';
 })
 export class ListadoComponent implements OnInit {
 
-  listadoHeroes : Heroe[] = [];
+  heroes: Heroe[] = [];
 
   constructor(private heroesService: HeroesService) { }
 
   ngOnInit(): void {
-    this.heroesService.getHeroes()
-    .subscribe(resp => {
-      this.listadoHeroes = resp;
-      console.log(this.listadoHeroes);
-    });
+    this.heroesService.getHeroes().subscribe(heroes => {
+      this.heroes = heroes;
+      console.log(this.heroes);
+    },
+    (err) => {
+      console.log(err.status);
+      this.heroes = []
+    }
+    );
   }
 }

@@ -1,4 +1,4 @@
-import { Input } from '@angular/core';
+import { Input, ResolvedReflectiveFactory } from '@angular/core';
 import { Component } from '@angular/core';
 import { Heroe } from '../../interfaces/heroes.interface';
 
@@ -9,6 +9,5 @@ import { Heroe } from '../../interfaces/heroes.interface';
   ]
 })
 export class HeroeTarjetaComponent {
-
   @Input() heroesIn!: Heroe;
 }

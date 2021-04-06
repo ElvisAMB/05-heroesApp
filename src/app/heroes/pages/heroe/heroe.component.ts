@@ -2,11 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-heroe',
-  template: `
-    <p>
-      heroe works!
-    </p>
-  `,
+  templateUrl: 'heroe.component.html',
   styles: [
   ]
 })

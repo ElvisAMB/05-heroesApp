@@ -2,11 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-agregar',
-  template: `
-    <p>
-      agregar works!
-    </p>
-  `,
+  templateUrl: 'agregar.component.html',
   styles: [
   ]
 })

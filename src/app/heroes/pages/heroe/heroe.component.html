@@ -1,1 +1,10 @@
-<h1>I am a hero details</h1>
+<mat-grid-list cols="1">
+    <mat-grid-tile>
+        <mat-spinner *ngIf="!heroe else detalle"></mat-spinner>
+
+    </mat-grid-tile>
+</mat-grid-list>
+
+<ng-template #detalle>
+    {{heroe | json}}
+</ng-template>

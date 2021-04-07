@@ -61,4 +61,4 @@ Command `npm install -g json-server`
 Database `https://gist.github.com/Klerith/403c91e61d3c87284beb0dd138619958`, download and save in file with extension `.json`, example: `dbHeroes.json`
 
 ## Star Json-Server       
-Command `json-server --watch dbHeroes.json`
+Command `json-server --watch dbHeroes.json`, execute in the folder where is the server installed.

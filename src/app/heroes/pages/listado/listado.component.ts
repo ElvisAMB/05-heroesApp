@@ -20,10 +20,11 @@ export class ListadoComponent implements OnInit {
   ngOnInit(): void {
     this.heroesService.getHeroes().subscribe(heroes => {
       this.heroes = heroes;
-      console.log(this.heroes);
+      //console.log(this.heroes);
     },
     (err) => {
       console.log(err.status);
+      console.error('Es posible que el servicio no se este ejecutando');
       this.heroes = []
     }
     );

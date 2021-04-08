@@ -5,7 +5,6 @@
 export const environment = {
   production: false,
   baseUrlApiHeroe: 'http://localhost:3000'
-
 };
 
 /*

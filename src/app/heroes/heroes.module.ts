@@ -1,11 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FlexLayoutModule} from '@angular/flex-layout';
+import { FormsModule } from '@angular/forms';
 import { MaterialModule } from '../material/material.module';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import {MatGridListModule} from '@angular/material/grid-list';
 
 import { AgregarComponent } from './pages/agregar/agregar.component';
 import { BuscarComponent } from './pages/buscar/buscar.component';
@@ -28,13 +25,10 @@ import { HeroeImagenPipe } from './pipes/heroe-imagen.pipe';
   ],
   imports: [
     CommonModule,
-    MatButtonModule,
-    MatCardModule,
     FlexLayoutModule,
+    FormsModule,
     MaterialModule,
     HeroesRoutingModule,
-    MatProgressSpinnerModule,
-    MatGridListModule
   ]
 })
 export class HeroesModule { }

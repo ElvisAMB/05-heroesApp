@@ -21,4 +21,8 @@ export class HeroesService {
   getHeroe(id: string):Observable<Heroe>{
     return this.http.get<Heroe>(`${this.urlApiHeroe}/heroes/${id}`);
   }
+
+  getHeroeSugerencia(cadena: string):Observable<Heroe[]>{
+    return this.http.get<Heroe[]>(`${this.urlApiHeroe}/heroes/?q=${cadena}&_limit=10`);
+  }
 }

@@ -7,14 +7,19 @@
     <div>
         <h3>Buscar</h3>
 
-        <mat-form-field class="example-full-width">
+        <mat-form-field>
             <mat-label>Number</mat-label>
-            <input type="text" placeholder="Pick one" aria-label="Number" [(ngModel)]="termino" matInput [matAutocomplete]="auto" (input)="buscando();">
-            <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+            <input type="text" placeholder="Nombre Heroe" aria-label="Number" [(ngModel)]="termino" matInput [matAutocomplete]="auto" (input)="buscando();">
+            <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" (optionSelected)="sugerenciaObtenida($event);">
                 <mat-option *ngFor="let option of listado" [value]="option">
                     {{option.superhero}}
                 </mat-option>
             </mat-autocomplete>
         </mat-form-field>
     </div>
+
+    <div>
+        <pre> {{heroeObtenido | json}} </pre>
+    </div>
+
 </div>

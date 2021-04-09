@@ -1,1 +1,49 @@
-<h1>I am a hero dc - marvel</h1>
+<h1>Nuevo Heroe <small>nuevo</small></h1>
+
+<div fxLayout="row" fxLayoutGap="20px">
+    <div fxFlex="50" fxLayout="column">
+        <div fxLayout="row" fxLayoutGap="40px">
+            <mat-form-field fxFlex="100">
+                <mat-label>Super Héroe</mat-label>
+                <input matInput type="text" required>
+            </mat-form-field>
+
+            <mat-form-field fxFlex="50">
+                <mat-label>Alter Ego</mat-label>
+                <input matInput type="text" required>
+            </mat-form-field>
+        </div>
+
+        <mat-form-field>
+            <mat-label>Primera Aparición</mat-label>
+            <input matInput type="text" required>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Personaje</mat-label>
+            <input matInput type="text" required>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Creador</mat-label>
+            <mat-select>
+                <mat-option *ngFor="let item of publishers" [value]="item.id">
+                    {{ item.description }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Foto Url</mat-label>
+            <input matInput type="url" required>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary">
+            <mat-icon>edit</mat-icon>
+            Guardar
+        </button>
+    </div>
+    <div fxFlex="50">
+        <img [src]="heroeUrl | heroeImagen">
+    </div>
+</div>

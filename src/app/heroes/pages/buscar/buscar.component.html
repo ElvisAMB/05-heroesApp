@@ -4,22 +4,26 @@
         <mat-divider></mat-divider>
     </div>
     <br>
-    <div>
+    <div fxLayout="column">
         <h3>Buscar</h3>
 
         <mat-form-field>
-            <mat-label>Number</mat-label>
+            <mat-label>Nombre Heroe</mat-label>
             <input type="text" placeholder="Nombre Heroe" aria-label="Number" [(ngModel)]="termino" matInput [matAutocomplete]="auto" (input)="buscando();">
             <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" (optionSelected)="sugerenciaObtenida($event);">
                 <mat-option *ngFor="let option of listado" [value]="option">
                     {{option.superhero}}
                 </mat-option>
+
+                <mat-option value="" *ngIf="listado.length === 0 && termino.trim().length > 0">
+                    No existe heroe con parámetro {{termino}}
+                </mat-option>
             </mat-autocomplete>
         </mat-form-field>
     </div>
 
-    <div>
-        <pre> {{heroeObtenido | json}} </pre>
+    <!-- Validar si heroe seleccionado existe -->
+    <div *ngIf="heroeObtenido">
+        <app-heroe-tarjeta [heroesIn]='heroeObtenido'></app-heroe-tarjeta>
     </div>
-
 </div>

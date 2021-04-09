@@ -13,7 +13,7 @@ export class BuscarComponent implements OnInit {
 
   listado: Heroe[] = [];
   termino: string = '';  //NgModel vista
-  heroeObtenido!: Heroe;
+  heroeObtenido: Heroe | undefined;
 
   constructor(private serviceHeroe: HeroesService) { }
 
@@ -21,16 +21,22 @@ export class BuscarComponent implements OnInit {
   }
 
   buscando(){
-    this.serviceHeroe.getHeroeSugerencia(this.termino)
-    .subscribe(items=>  this.listado = items); //Mostra sugerencias de búsqueda
+    this.serviceHeroe.getHeroeSugerencia(this.termino.trim())
+    .subscribe(items=> this.listado = items); //Mostra sugerencias de búsqueda
   }
 
   sugerenciaObtenida( event: MatAutocompleteSelectedEvent)
   {
+    if (!event.option.value) {   //Valida que no tiene valor cadena vacía
+      this.heroeObtenido = undefined;
+      return;  
+    }
+
     const seleccion:Heroe = event.option.value;
     this.termino = seleccion.superhero;
- 
+    console.log(seleccion);
     this.serviceHeroe.getHeroe(seleccion.id!)
-                     .subscribe(item => this.heroeObtenido = item);  //Mostra heroe seleccionado
+                     .subscribe(item => this.heroeObtenido = item);  //Mostrar heroe seleccionado
+    console.warn(this.heroeObtenido);
   }
 }

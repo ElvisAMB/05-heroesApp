@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { tap } from 'rxjs/operators';
 import { Heroe, Publisher } from '../../interfaces/heroes.interface';
+import { HeroesService } from '../../services/heroes.service';
 
 @Component({
   selector: 'app-agregar',
@@ -24,27 +25,31 @@ export class AgregarComponent implements OnInit {
   ]
   
   //Objeto para la imagen
-  heroeUrl: Heroe= {
+  heroeAgregar: Heroe= {
      alter_ego:'',
      characters:'',
      first_appearance:'',
-     publisher:Publisher.DCComics,
+     publisher:Publisher.Desconocido,
      superhero:'',
      alt_img:''
   }
 
-  constructor(private activatedRoute: ActivatedRoute) { }
+  constructor(private serviceHeroe: HeroesService) { }
 
   ngOnInit(): void {
-    this.activatedRoute.params
-    .pipe(
-      //switchMap({ id }) => console.log(id),
-      tap(console.log)
-    )
-    .subscribe(pais => console.log('')); // Se llena la vista para mostrarla
+    
 
   }
+  
+  addHeroe(){
+    if (this.heroeAgregar.superhero.trim().length === 0) {
+      return;  
+    } 
 
+    this.serviceHeroe.setHeroe(this.heroeAgregar)
+    .subscribe(resp => console.log(resp));
+    //console.log(this.heroeAgregar);
+  }
 }
 
 

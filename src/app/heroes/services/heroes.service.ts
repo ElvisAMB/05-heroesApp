@@ -25,4 +25,8 @@ export class HeroesService {
   getHeroeSugerencia(cadena: string):Observable<Heroe[]>{
     return this.http.get<Heroe[]>(`${this.urlApiHeroe}/heroes/?q=${cadena}&_limit=10`);
   }
+
+  setHeroe(heroe:Heroe):Observable<Heroe>{
+    return this.http.post<Heroe>(`${this.urlApiHeroe}/heroes/`,heroe);
+  }
 }

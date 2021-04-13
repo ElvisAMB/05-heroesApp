@@ -41,10 +41,20 @@
             <input matInput type="url" required [(ngModel)]="heroeAgregar.alt_img">
         </mat-form-field>
 
-        <button mat-raised-button color="primary" (click)="addHeroe();">
-            <mat-icon>edit</mat-icon>
-            Guardar
-        </button>
+        <div fxLayout="">
+            <button mat-raised-button color="primary" (click)="addHeroe();">
+                <mat-icon>edit</mat-icon>
+                Guardar
+            </button>
+            <span class="spaces"></span>
+
+            <button mat-raised-button color="warn" (click)="eraseHeroe();" *ngIf="heroeAgregar.id">
+                <mat-icon>remove</mat-icon>
+                Quitar
+            </button>
+        </div>
+
+
     </div>
     <div fxFlex="50">
         <img [src]="heroeAgregar | heroeImagen">

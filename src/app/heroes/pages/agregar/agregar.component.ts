@@ -27,6 +27,10 @@ export class AgregarComponent implements OnInit {
     {
       id: 'Marvel Comics',
       description: 'Marvel-Comics'
+    },
+    {
+      id: 'Desconocido',
+      description: 'No Identificado'
     }
   ]
   
@@ -62,6 +66,10 @@ export class AgregarComponent implements OnInit {
       return;  
     } 
 
+    if (this.heroeAgregar.alt_img?.trim().length === 0) {
+      return;  
+    } 
+
     if (this.heroeAgregar.id) {
       //Actualizar heroe
       //console.log('Actualizar heroe');
@@ -74,8 +82,20 @@ export class AgregarComponent implements OnInit {
       this.serviceHeroe.setHeroe(this.heroeAgregar)
       .subscribe(resp => this.heroeAgregar = resp);
       this.router.navigate(['/heroes',this.heroeAgregar.id]);
+      console.log(this.heroeAgregar.id);
     }  
   }
+
+  eraseHeroe(){
+    if (!this.heroeAgregar.id) {
+      return;  
+    } else{
+      this.serviceHeroe.setDeleteHeroe(this.heroeAgregar.id)
+      .subscribe(resp => console.log(resp));
+      this.router.navigate(['/heroes']);
+    }
+  }
+
 }
 
 

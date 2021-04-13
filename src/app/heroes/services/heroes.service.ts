@@ -33,4 +33,8 @@ export class HeroesService {
   setUpdateHeroe(heroe:Heroe):Observable<Heroe>{
     return this.http.put<Heroe>(`${this.urlApiHeroe}/heroes/${heroe.id}`,heroe);
   }
+
+  setDeleteHeroe(id:string):Observable<any>{
+    return this.http.delete<any>(`${this.urlApiHeroe}/heroes/${id}`);
+  }
 }

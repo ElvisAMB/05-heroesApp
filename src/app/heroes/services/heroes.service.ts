@@ -19,7 +19,7 @@ export class HeroesService {
   }
 
   getHeroe(id: string):Observable<Heroe>{
-    return this.http.get<Heroe>(`${this.urlApiHeroe}/heroes/${id}`);
+      return this.http.get<Heroe>(`${this.urlApiHeroe}/heroes/${id}`);  
   }
 
   getHeroeSugerencia(cadena: string):Observable<Heroe[]>{
@@ -28,5 +28,9 @@ export class HeroesService {
 
   setHeroe(heroe:Heroe):Observable<Heroe>{
     return this.http.post<Heroe>(`${this.urlApiHeroe}/heroes/`,heroe);
+  }
+
+  setUpdateHeroe(heroe:Heroe):Observable<Heroe>{
+    return this.http.put<Heroe>(`${this.urlApiHeroe}/heroes/${heroe.id}`,heroe);
   }
 }

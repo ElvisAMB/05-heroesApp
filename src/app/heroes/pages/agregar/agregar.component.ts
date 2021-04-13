@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { tap } from 'rxjs/operators';
+import { ActivatedRoute, Router } from '@angular/router';
+import { switchMap } from 'rxjs/operators';
 import { Heroe, Publisher } from '../../interfaces/heroes.interface';
 import { HeroesService } from '../../services/heroes.service';
 
@@ -8,6 +8,12 @@ import { HeroesService } from '../../services/heroes.service';
   selector: 'app-agregar',
   templateUrl: './agregar.component.html',
   styles: [
+    `
+    img {
+      width:100%;
+      border-radius:5px;
+    }
+    `
   ]
 })
 export class AgregarComponent implements OnInit {
@@ -34,11 +40,21 @@ export class AgregarComponent implements OnInit {
      alt_img:''
   }
 
-  constructor(private serviceHeroe: HeroesService) { }
+  constructor(private serviceHeroe: HeroesService, private activatedRoute:ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
+    //console.log(this.router.url.includes('editar'));
     
-
+    if (!this.router.url.includes('editar')) {
+      return;
+    }
+    else{
+      this.activatedRoute.params
+      .pipe(
+        switchMap( ({id}) => this.serviceHeroe.getHeroe(id))
+      )
+      .subscribe(heroe => this.heroeAgregar = heroe);
+    }
   }
   
   addHeroe(){
@@ -46,9 +62,19 @@ export class AgregarComponent implements OnInit {
       return;  
     } 
 
-    this.serviceHeroe.setHeroe(this.heroeAgregar)
-    .subscribe(resp => console.log(resp));
-    //console.log(this.heroeAgregar);
+    if (this.heroeAgregar.id) {
+      //Actualizar heroe
+      //console.log('Actualizar heroe');
+      this.serviceHeroe.setUpdateHeroe(this.heroeAgregar)
+      .subscribe(resp => this.heroeAgregar = resp);
+    }
+    else{
+      //Crear heroe
+      //console.log('Crear heroe');
+      this.serviceHeroe.setHeroe(this.heroeAgregar)
+      .subscribe(resp => this.heroeAgregar = resp);
+      this.router.navigate(['/heroes',this.heroeAgregar.id]);
+    }  
   }
 }
 

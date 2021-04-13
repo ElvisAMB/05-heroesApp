@@ -1,4 +1,7 @@
-<h1>Nuevo Heroe <small>{{heroeAgregar.superhero}}</small></h1>
+<div *ngIf="!heroeAgregar.id">
+    <h1>Nuevo Heroe <small>{{heroeAgregar.superhero}}</small></h1>
+</div>
+
 
 <div fxLayout="row" fxLayoutGap="40px" fxLayout.xs="column">
     <div fxFlex="50" fxLayout="column">
@@ -10,23 +13,23 @@
 
             <mat-form-field fxFlex="50">
                 <mat-label>Alter Ego</mat-label>
-                <input matInput type="text" required>
+                <input matInput type="text" required [(ngModel)]="heroeAgregar.alter_ego">
             </mat-form-field>
         </div>
 
         <mat-form-field>
             <mat-label>Primera Aparición</mat-label>
-            <input matInput type="text" required>
+            <input matInput type="text" required [(ngModel)]="heroeAgregar.first_appearance">
         </mat-form-field>
 
         <mat-form-field>
             <mat-label>Personaje</mat-label>
-            <input matInput type="text" required>
+            <input matInput type="text" required [(ngModel)]="heroeAgregar.characters">
         </mat-form-field>
 
         <mat-form-field>
             <mat-label>Creador</mat-label>
-            <mat-select>
+            <mat-select [(ngModel)]="heroeAgregar.publisher">
                 <mat-option *ngFor="let item of publishers" [value]="item.id">
                     {{ item.description }}
                 </mat-option>
@@ -35,7 +38,7 @@
 
         <mat-form-field>
             <mat-label>Foto Url</mat-label>
-            <input matInput type="url" required>
+            <input matInput type="url" required [(ngModel)]="heroeAgregar.alt_img">
         </mat-form-field>
 
         <button mat-raised-button color="primary" (click)="addHeroe();">

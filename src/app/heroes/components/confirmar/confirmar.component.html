@@ -1,0 +1,8 @@
+<h2 mat-dialog-title>Install Angular</h2>
+<mat-dialog-content class="mat-typography">
+    <h3>¿Está seguro que desea borrar al superheroe {{data.superhero}}?</h3>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button (click)="cerrarDialogo()" mat-dialog-close cdkFocusInitial>Cancelar</button>
+    <button mat-button (click)="aceptarRespuesta()" [mat-dialog-close]="true" color="warn">Aceptar</button>
+</mat-dialog-actions>

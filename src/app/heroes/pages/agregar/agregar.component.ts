@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { Heroe, Publisher } from '../../interfaces/heroes.interface';
 import { HeroesService } from '../../services/heroes.service';
+import { ConfirmarComponent } from '../../components/confirmar/confirmar.component';
+import { ifStmt } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-agregar',
@@ -44,7 +48,7 @@ export class AgregarComponent implements OnInit {
      alt_img:''
   }
 
-  constructor(private serviceHeroe: HeroesService, private activatedRoute:ActivatedRoute, private router: Router) { }
+  constructor(private serviceHeroe: HeroesService, private activatedRoute:ActivatedRoute, private router: Router,private snackBar: MatSnackBar,public dialog: MatDialog) { }
 
   ngOnInit(): void {
     //console.log(this.router.url.includes('editar'));
@@ -71,29 +75,49 @@ export class AgregarComponent implements OnInit {
     } 
 
     if (this.heroeAgregar.id) {
-      //Actualizar heroe
-      //console.log('Actualizar heroe');
       this.serviceHeroe.setUpdateHeroe(this.heroeAgregar)
-      .subscribe(resp => this.heroeAgregar = resp);
+      .subscribe(resp => {
+        this.heroeAgregar = resp;
+        this.mostrarSnackBar("Registro Actualizado");
+      });
     }
     else{
       //Crear heroe
-      //console.log('Crear heroe');
       this.serviceHeroe.setHeroe(this.heroeAgregar)
-      .subscribe(resp => this.heroeAgregar = resp);
+      .subscribe(resp => {
+        this.heroeAgregar = resp;
+        this.mostrarSnackBar("Registro Guardado");
+      });
       this.router.navigate(['/heroes',this.heroeAgregar.id]);
-      console.log(this.heroeAgregar.id);
     }  
   }
 
   eraseHeroe(){
-    if (!this.heroeAgregar.id) {
-      return;  
-    } else{
-      this.serviceHeroe.setDeleteHeroe(this.heroeAgregar.id)
-      .subscribe(resp => console.log(resp));
-      this.router.navigate(['/heroes']);
-    }
+    
+    const respuesta = this.dialog.open(ConfirmarComponent,{
+        data:{...this.heroeAgregar}
+      });
+
+      respuesta.afterClosed().subscribe(
+        (result) =>{
+          console.log(result);
+            if (result) {
+              if (!this.heroeAgregar.id) {
+                return;  
+              } else{
+                this.serviceHeroe.setDeleteHeroe(this.heroeAgregar.id)
+                .subscribe(resp => console.log(resp));
+                this.router.navigate(['/heroes']);
+              }          
+            }
+        }
+      );
+  }
+
+  mostrarSnackBar(mensaje: string){
+    this.snackBar.open(mensaje,"Aceptar",{
+      duration:2500
+    });
   }
 
 }

@@ -21,6 +21,7 @@ export class ConfirmarComponent implements OnInit {
     this.dialogRef.close();
   }
 
+  //Respuesta de eliminación de heroe
   aceptarRespuesta()
   {
     this.dialogRef.close(true);

@@ -95,7 +95,7 @@ export class AgregarComponent implements OnInit {
   eraseHeroe(){
     
     const respuesta = this.dialog.open(ConfirmarComponent,{
-        data:{...this.heroeAgregar}
+        data:{...this.heroeAgregar} //Sólo lectura porque en javascript se pasan valores por referencia
       });
 
       respuesta.afterClosed().subscribe(

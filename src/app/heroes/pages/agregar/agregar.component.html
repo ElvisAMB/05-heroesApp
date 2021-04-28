@@ -1,3 +1,4 @@
+<!--Condicionar presentación del texto-->
 <div *ngIf="!heroeAgregar.id">
     <h1>Nuevo Heroe <small>{{heroeAgregar.superhero}}</small></h1>
 </div>
@@ -44,13 +45,13 @@
         <div fxLayout="">
             <button mat-raised-button color="primary" (click)="addHeroe();">
                 <mat-icon>edit</mat-icon>
-                Guardar
+                {{ (heroeAgregar.id)?'Actualizar':'Nuevo' }}
             </button>
             <span class="spaces"></span>
 
             <button mat-raised-button color="warn" (click)="eraseHeroe();" *ngIf="heroeAgregar.id">
+                Borrar
                 <mat-icon>remove</mat-icon>
-                Quitar
             </button>
         </div>
 
